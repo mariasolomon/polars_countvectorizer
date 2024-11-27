@@ -12,14 +12,8 @@ polars_countvectorizer is a Rust-based Python library that provides text vectori
 
 To install the package, you will need to have Python and Rust installed. Then, use pip to install the Python bindings:
 
-pip install polars_countvectorizer
-Alternatively, if you're developing locally, you can build the package using maturin:
-
-First, ensure maturin is installed:
-pip install maturin
-Then, run the following command to build and install the package:
 ```console
-maturin develop
+pip install polars_countvectorizer
 ```
 
 # Usage
