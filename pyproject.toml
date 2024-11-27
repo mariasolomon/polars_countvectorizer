@@ -1,7 +1,7 @@
 [project]
-name = "polars-countvectorizer-repo"
+name = "polars-countvectorizer"
 version = "0.1.0"
-description = "Add your description here"
+description = "Rust-based Python library that provides text vectorization and cosine distance calculation, optimized for use with Polars DataFrames."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
