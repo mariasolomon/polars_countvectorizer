@@ -4,31 +4,28 @@ use polars::prelude::*;
 use rayon::prelude::*;
 use sprs::CsMat;
 use pyo3::prelude::*;
-use pyo3_polars::{PyDataFrame, PySeries};
+use pyo3_polars::PySeries;
 use pyo3::exceptions::PyRuntimeError;
 
-/// Calculates cosine distances and adds a column to the DataFrame
 #[pyfunction]
-fn process_cosine_distances_py(py_df: PyDataFrame) -> PyResult<PySeries> {
+fn process_cosine_distances_py(ser1: PySeries, ser2: PySeries ) -> PyResult<PySeries> {
+    let doc1_: Series = ser1.into();
 
-    let df: DataFrame = py_df.into();
-
-    let doc1: Vec<String> = df.column("doc1")
-                        .map_err(|e| PyRuntimeError::new_err(format!("Polars error : {:?}", e)))? 
-                        .str()
-                        .map_err(|e| PyRuntimeError::new_err(format!("Polars error: {:?}", e)))? 
-                        .into_no_null_iter()
-                        .map(|s| s.to_string())
-                        .collect();
-    
-    let doc2: Vec<String> = df.column("doc2")
-                        .map_err(|e| PyRuntimeError::new_err(format!("Polars error: {:?}", e)))? 
+    let doc1: Vec<String> = doc1_
                         .str()
                         .map_err(|e| PyRuntimeError::new_err(format!("Polars error: {:?}", e)))? 
                         .into_no_null_iter()
                         .map(|s| s.to_string())
                         .collect();
 
+    let doc2_: Series = ser2.into();
+
+    let doc2: Vec<String> = doc2_
+                        .str()
+                        .map_err(|e| PyRuntimeError::new_err(format!("Polars error: {:?}", e)))? 
+                        .into_no_null_iter()
+                        .map(|s| s.to_string())
+                        .collect();
 
     let cosine_distances: Vec<f32> = doc1
         .into_iter()
