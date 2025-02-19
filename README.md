@@ -8,13 +8,6 @@ polars_countvectorizer is a Rust-based Python library that provides text vectori
 - CountVectorizer Integration: Uses the CountVectorizer from the linfa_preprocessing crate to vectorize text data.
 - Optimized for Performance: Leverages parallel processing via rayon for faster computations.
 
-## Installation
-
-To install the package, you will need to have Python and Rust installed. Then, use pip to install the Python bindings:
-
-```console
-pip install polars_countvectorizer
-```
 
 # Usage
 ```
